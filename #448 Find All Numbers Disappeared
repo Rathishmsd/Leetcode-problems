@@ -1,0 +1,32 @@
+int compare(const void *a,const void *b)
+ {
+    return (*(int*)a - *(int*)b);
+ }
+int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
+
+   qsort(nums,numsSize,sizeof(int),compare);
+   
+    int h=1;
+    for(int i=1;i<numsSize;i++)
+    {
+        if(nums[i]!=nums[i-1])
+        {
+            nums[h++]=nums[i];
+        }
+    }
+    int *res = (int*)malloc(numsSize*sizeof(int));
+    int k=0,u=0;
+    for(int i=1;i<=numsSize;i++)
+    {
+         if(u<h && nums[u]==i)
+         {
+            u++;
+         }
+         else
+         {
+            res[k++]=i;
+         }
+    }
+    *returnSize=k;
+    return res;
+}
