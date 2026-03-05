@@ -1,0 +1,22 @@
+int dominantIndex(int* nums, int numsSize) {
+
+    int max=nums[0],k=0;
+    for(int i=1;i<numsSize;i++)
+    {
+         if(nums[i]>max)
+         {
+            max=nums[i];
+            k=i;
+         }
+    }
+
+    for(int i=0;i<numsSize;i++)
+    {
+        if((2*nums[i]) > max && i!=k)
+        {
+             return -1;
+        }
+    }
+    return k;
+    
+}
