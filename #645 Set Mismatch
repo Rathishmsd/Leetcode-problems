@@ -1,0 +1,48 @@
+int compare(const void *a,const void *b) 
+{ 
+    return (*(int *)a - *(int *)b); 
+}
+int* findErrorNums(int* nums, int numsSize, int* returnSize) {
+
+    int *res = malloc(2 * sizeof(int));
+    
+
+    qsort(nums, numsSize, sizeof(int), compare);
+
+    int rep = -1;
+    int mis = -1;
+
+    for (int i = 1; i < numsSize; i++) 
+    {
+        if (nums[i] == nums[i - 1]) 
+        {
+            rep = nums[i];
+            break;
+        }
+    }
+
+    if (nums[0] != 1) 
+    {
+        mis = 1;
+    } 
+    else 
+    {
+        for (int i = 0; i < numsSize - 1; i++) 
+        {
+            if (nums[i + 1] - nums[i] > 1) 
+            {
+                mis = nums[i] + 1;
+                break;
+            }
+        }
+        if (mis == -1) 
+        {
+            mis = numsSize;
+        }
+    }
+
+    res[0] = rep;
+    res[1] = mis;
+    *returnSize = 2;
+    return res;
+}
