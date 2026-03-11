@@ -1,0 +1,24 @@
+struct ListNode* mergeNodes(struct ListNode* head) {
+
+    struct ListNode*temp=head->next;
+    struct ListNode*res=head;
+    int sum=0;
+    while(temp!=NULL)
+    {
+        if(temp->val!=0)
+        {
+            sum=sum+temp->val;
+        }
+        else
+        {
+            res->val=sum;
+            res->next=temp->next;
+            res=res->next;
+            sum=0;
+
+        }
+        temp=temp->next;
+    }
+    return head;
+    
+}
